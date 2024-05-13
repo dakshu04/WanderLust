@@ -21,19 +21,28 @@ app.get("/", (req, res) => {
     res.send("Hi, I am root");
 });
 
-app.get("/testListing", async (req, res) => {
-    let sampleListing = new Listing({
-        title:"My New Villa",
-        description: "By the beach",
-        price:1200,
-        location:"Calanguate, Goa",
-        country:"India",
+app.get("/listings", (req, res) => {
+    Listings.find({}).then((res) => {
+        console.log(res);
     });
+});
 
-    await sampleListing.save();
-    console.log("sample was saved");
-    res.send("successfull testing")
-})
+
+
+
+// app.get("/testListing", async (req, res) => {
+//     let sampleListing = new Listing({
+//         title:"My New Villa",
+//         description: "By the beach",
+//         price:1200,
+//         location:"Calanguate, Goa",
+//         country:"India",
+//     });
+
+//     await sampleListing.save();
+//     console.log("sample was saved");
+//     res.send("successfull testing")
+// })
 
 app.listen(8080, () => {
     console.log("Server is listening on port 8080");
